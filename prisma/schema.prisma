@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo para informações do usuário (anteriormente Developer)
+model User {
+  id            Int          @id @default(autoincrement())
+  nome          String
+  sobrenome     String
+  email         String       @unique
+  telefone      String?
+  endereco      Endereco[]
+  educacao      Educacao[]
+  experiencia   Experiencia[]
+  tecnologias   String[]     // Campo de tecnologias
+}
+
+// Modelo para o endereço do usuário
+model Endereco {
+  id            Int      @id @default(autoincrement())
+  rua           String
+  cidade        String
+  estado        String
+  codigoPostal  String
+  pais          String
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+// Modelo para histórico educacional
+model Educacao {
+  id            Int      @id @default(autoincrement())
+  instituicao   String
+  curso         String
+  dataInicio    DateTime
+  dataConclusao DateTime?
+  user          User     @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+// Modelo para experiência profissional
+model Experiencia {
+  id           Int      @id @default(autoincrement())
+  empresa      String
+  cargo        String
+  descricao    String
+  dataInicio   DateTime
+  dataFim      DateTime?
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+}
+

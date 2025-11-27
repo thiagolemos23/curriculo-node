@@ -1,4 +1,4 @@
-README — Currículo em Node.js (`curriculo-node`)**
+README — Currículo em Node.js (`curriculo-node`)
 
 
 # API de Currículos – Node.js

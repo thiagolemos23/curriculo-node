@@ -61,7 +61,8 @@ GET /curriculos
 POST /curriculos
 PUT /curriculos/:id
 DELETE /curriculos/:id
-🧑‍💻 Autor
+
+##🧑‍💻 Autor
 Thiago Espinoza
 Desenvolvedor Full Stack
 GitHub: https://github.com/thiagolemos23
